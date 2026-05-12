@@ -7,11 +7,12 @@ import assert from 'node:assert';
 import * as plugin from '@form8ion/mise';
 
 When('the mise plugin is compared to form8ion plugin conventions', async function () {
-  await plugin.scaffold({projectRoot: this.projectRoot});
+  this.scaffoldResult = await plugin.scaffold({projectRoot: this.projectRoot});
 });
 
 Then('the public interface is compatible with the plugin schema', async function () {
   validateOptions(optionsSchemas.form8ionPlugin, plugin);
+  assert.strictEqual(Object.prototype.toString.call(this.scaffoldResult), '[object Object]');
 });
 
 Then('the output produced by the scaffolder is detectable by the predicate', async function () {

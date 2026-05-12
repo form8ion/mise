@@ -75,5 +75,8 @@
     "rollup-plugin-auto-external": "2.0.0",
     "vitest": "4.1.6",
     "vitest-when": "0.10.0"
+  },
+  "dependencies": {
+    "smol-toml": "^1.6.1"
   }
 }
