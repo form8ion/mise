@@ -31,7 +31,7 @@ form8ion plugin for managing mise
 ### Installation
 
 ```sh
-$ npm install @form8ion/mise
+$ npm install @form8ion/mise --save-prod
 ```
 
 ### Example
