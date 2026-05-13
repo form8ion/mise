@@ -25,6 +25,7 @@ form8ion plugin for managing mise
 
 [![npm][npm-badge]][npm-link]
 [![license][license-badge]][license-link]
+![node][node-badge]
 
 <!--consumer-badges end -->
 
@@ -112,3 +113,5 @@ $ npm test
 [license-link]: LICENSE
 
 [license-badge]: https://img.shields.io/github/license/form8ion/mise.svg?logo=opensourceinitiative
+
+[node-badge]: https://img.shields.io/node/v/@form8ion/mise?logo=node.js
