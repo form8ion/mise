@@ -5,7 +5,7 @@ import assert from 'node:assert';
 import {Then} from '@cucumber/cucumber';
 
 Then('mise is configured to use a lockfile', async function () {
-  const {lockfile} = parse(await fs.readFile(`${this.projectRoot}/mise.toml`, 'utf-8'));
+  const {settings} = parse(await fs.readFile(`${this.projectRoot}/mise.toml`, 'utf-8'));
 
-  assert.ok(lockfile);
+  assert.strictEqual(settings?.lockfile, true);
 });
