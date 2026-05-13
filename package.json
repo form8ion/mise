@@ -4,6 +4,9 @@
   "license": "MIT",
   "version": "0.0.0-semantically-released",
   "type": "module",
+  "engines": {
+    "node": "^22.21.0 || >=24.12"
+  },
   "author": "Matt Travi <npm@travi.org> (https://matt.travi.org)",
   "repository": "form8ion/mise",
   "bugs": "https://github.com/form8ion/mise/issues",
@@ -14,6 +17,7 @@
   "scripts": {
     "pretest": "run-s build",
     "test": "npm-run-all --print-label --parallel lint:* --parallel test:*",
+    "lint:engines": "ls-engines",
     "lint:gherkin": "gplint --config .gplintrc.json",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "run-s 'lint:js -- --fix'",
@@ -50,10 +54,13 @@
     "provenance": true
   },
   "packageManager": "npm@11.14.1+sha512.6a8a4d67478497a2dbc6815cad72e64c43f33413717e242756047d466241ab39bee61e691683a64658e94496ec5f1a1c05e4a5ec62dcc773280dfd949443a367",
+  "dependencies": {
+    "@form8ion/core": "^4.11.1",
+    "smol-toml": "^1.6.1"
+  },
   "devDependencies": {
     "@cucumber/cucumber": "12.8.3",
     "@form8ion/commitlint-config": "2.0.14",
-    "@form8ion/core": "4.11.1",
     "@form8ion/eslint-config": "7.0.16",
     "@form8ion/eslint-config-cucumber": "1.4.1",
     "@form8ion/eslint-config-vitest": "1.1.0",
@@ -64,6 +71,7 @@
     "gplint": "2.5.2",
     "husky": "9.1.7",
     "lockfile-lint": "5.0.0",
+    "ls-engines": "0.10.0",
     "mock-fs": "5.5.0",
     "npm-run-all2": "8.0.4",
     "publint": "0.3.20",
