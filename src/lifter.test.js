@@ -25,11 +25,11 @@ describe('mise lifter', () => {
     when(parse).calledWith(serializedExistingConfig).thenReturn(existingConfig);
     when(stringify)
       .calledWith({
-        ...existingConfig,
         settings: {
           ...existingConfig.settings,
           lockfile: true
-        }
+        },
+        tools: existingConfig.tools
       })
       .thenReturn(serializedLiftedConfig);
 
@@ -44,10 +44,10 @@ describe('mise lifter', () => {
     when(parse).calledWith(serializedExistingConfig).thenReturn(existingConfig);
     when(stringify)
       .calledWith({
-        ...existingConfig,
         settings: {
           lockfile: true
-        }
+        },
+        tools: existingConfig.tools
       })
       .thenReturn(serializedLiftedConfig);
 
