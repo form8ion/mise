@@ -1,0 +1,21 @@
+[settings]
+lockfile = true
+
+[tools]
+zizmor = "1.25.2"
+actionlint = "1.7.12"
+
+[tasks."verify:workflows:actionlint"]
+run = "actionlint .github/workflows/*.yml"
+
+[tasks."verify:workflows:zizmor"]
+run = "zizmor .github/workflows/*.yml"
+
+[tasks."verify:workflows"]
+depends = ["verify:workflows:actionlint", "verify:workflows:zizmor"]
+
+[tasks."verify:npm"]
+run = "npm test"
+
+[tasks.verify]
+depends = ["verify:npm"]
