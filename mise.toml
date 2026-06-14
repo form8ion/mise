@@ -5,6 +5,9 @@ lockfile = true
 zizmor = "1.25.2"
 actionlint = "1.7.12"
 
+[tasks."fix:workflows:zizmor"]
+run = "zizmor --fix=all .github/workflows/*.yml"
+
 [tasks."verify:workflows:actionlint"]
 run = "actionlint .github/workflows/*.yml"
 
@@ -18,4 +21,4 @@ depends = ["verify:workflows:actionlint", "verify:workflows:zizmor"]
 run = "npm test"
 
 [tasks.verify]
-depends = ["verify:npm", "verify:workflows:actionlint"]
+depends = ["verify:npm", "verify:workflows"]
