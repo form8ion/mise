@@ -18,4 +18,4 @@ depends = ["verify:workflows:actionlint", "verify:workflows:zizmor"]
 run = "npm test"
 
 [tasks.verify]
-depends = ["verify:npm"]
+depends = ["verify:npm", "verify:workflows:actionlint"]
