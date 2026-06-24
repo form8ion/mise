@@ -51,7 +51,7 @@ describe('mise lifter', () => {
       })
       .thenReturn(serializedLiftedConfig);
 
-    await liftMise({projectRoot});
+    expect(await liftMise({projectRoot})).toEqual({});
 
     expect(fs.writeFile).toHaveBeenCalledWith(`${projectRoot}/mise.toml`, serializedLiftedConfig);
   });

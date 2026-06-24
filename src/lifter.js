@@ -19,4 +19,6 @@ export default async function liftMise({projectRoot}) {
       ...otherConfig
     })
   );
+
+  return {};
 }
