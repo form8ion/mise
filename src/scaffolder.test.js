@@ -19,5 +19,6 @@ describe('mise scaffolder', () => {
     expect(await scaffoldMise({projectRoot})).toEqual({});
 
     expect(fs.writeFile).toHaveBeenCalledWith(`${projectRoot}/mise.toml`, serializedConfig);
+    expect(fs.writeFile).toHaveBeenCalledWith(`${projectRoot}/mise.lock`, '');
   });
 });

@@ -1,7 +1,8 @@
 import {promises as fs} from 'node:fs';
 import {parse, stringify} from 'smol-toml';
+import {fileExists} from '@form8ion/core';
 
-import {describe, it, expect, vi, beforeEach} from 'vitest';
+import {beforeEach, describe, expect, it, vi} from 'vitest';
 import {when} from 'vitest-when';
 import any from '@travi/any';
 
@@ -9,6 +10,7 @@ import liftMise from './lifter.js';
 
 vi.mock('node:fs');
 vi.mock('smol-toml');
+vi.mock('@form8ion/core');
 
 describe('mise lifter', () => {
   const projectRoot = any.string();
@@ -23,6 +25,7 @@ describe('mise lifter', () => {
     const existingConfig = {tools: {node: '22.14.0'}, settings: {idiomatic_version_file_enable_tools: ['node']}};
 
     when(parse).calledWith(serializedExistingConfig).thenReturn(existingConfig);
+    when(fileExists).calledWith(`${projectRoot}/mise.lock`).thenResolve(false);
     when(stringify)
       .calledWith({
         settings: {
@@ -42,6 +45,7 @@ describe('mise lifter', () => {
     const existingConfig = {tools: {node: '22.14.0'}, settings: 'not-an-object'};
 
     when(parse).calledWith(serializedExistingConfig).thenReturn(existingConfig);
+    when(fileExists).calledWith(`${projectRoot}/mise.lock`).thenResolve(false);
     when(stringify)
       .calledWith({
         settings: {
@@ -54,5 +58,15 @@ describe('mise lifter', () => {
     expect(await liftMise({projectRoot})).toEqual({});
 
     expect(fs.writeFile).toHaveBeenCalledWith(`${projectRoot}/mise.toml`, serializedLiftedConfig);
+    expect(fs.writeFile).toHaveBeenCalledWith(`${projectRoot}/mise.lock`, '');
+  });
+
+  it('should not modify the existing lockfile', async () => {
+    when(parse).calledWith(serializedExistingConfig).thenReturn(any.simpleObject());
+    when(fileExists).calledWith(`${projectRoot}/mise.lock`).thenResolve(true);
+
+    expect(await liftMise({projectRoot})).toEqual({});
+
+    expect(fs.writeFile).not.toHaveBeenCalledWith(`${projectRoot}/mise.lock`, '');
   });
 });

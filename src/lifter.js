@@ -1,5 +1,6 @@
 import {promises as fs} from 'node:fs';
 import {parse, stringify} from 'smol-toml';
+import {fileExists} from '@form8ion/core';
 
 export default async function liftMise({projectRoot}) {
   const miseConfigPath = `${projectRoot}/mise.toml`;
@@ -19,6 +20,10 @@ export default async function liftMise({projectRoot}) {
       ...otherConfig
     })
   );
+
+  if (!(await fileExists(`${projectRoot}/mise.lock`))) {
+    await fs.writeFile(`${projectRoot}/mise.lock`, '');
+  }
 
   return {};
 }
