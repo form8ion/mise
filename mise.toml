@@ -3,7 +3,7 @@ lockfile = true
 idiomatic_version_file_enable_tools = ["node"]
 
 [tools]
-zizmor = "1.25.2"
+zizmor = "1.30.0"
 actionlint = "1.7.12"
 
 [tasks."fix:workflows:zizmor"]
