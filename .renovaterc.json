@@ -1,6 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "github>form8ion/renovate-config:js-package"
+    "github>form8ion/renovate-config:js-package",
+    "github>form8ion/renovate-config:mise"
   ]
 }
